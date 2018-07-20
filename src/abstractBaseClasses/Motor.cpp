@@ -34,7 +34,7 @@ int Motor::getSpeed() {
 }
 
 void Motor::reverse() {
-  this->multiplier = -1;
+  this->multiplier *= -1;
 }
 
 void Motor::init() {
@@ -71,13 +71,11 @@ int Motor::getChannel() {
 }
 
 void Motor::updateSlewRate() {
-  if (this->targetSpeed != this->speed) {
-    // A bit of motor slewing to make sure that we don't stall
-    int currSlewStep = slewStep * sign(this->targetSpeed - this->speed);
-    currSlewStep = confineToRange(slewStep, this->targetSpeed - this->speed, this->speed - this->targetSpeed); // This line may cause issues
-    this->speed += currSlewStep;
-    motorSet(this->channel, this->speed);
-  }
+  // A bit of motor slewing to make sure that we don't stall
+  int currSlewStep = this->targetSpeed - this->speed;
+  currSlewStep = confineToRange(currSlewStep, -slewStep, slewStep); // This line may cause issues
+  this->speed += currSlewStep;
+  motorSet(this->channel, this->speed);
 }
 
 void Motor::periodicUpdate() {

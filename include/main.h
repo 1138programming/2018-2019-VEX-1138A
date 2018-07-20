@@ -34,10 +34,8 @@
 #include <abstractBaseClasses/KalmanFilter.h>
 #include <subsystems/Subsystem.h>
 #include <subsystems/Base.h>
-#include <subsystems/Intake.h>
-#include <subsystems/Puncher.h>
-#include <subsystems/Lift.h>
-#include <subsystems/Turntable.h>
+#include <subsystems/Arm.h>
+#include <subsystems/Claw.h>
 
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
