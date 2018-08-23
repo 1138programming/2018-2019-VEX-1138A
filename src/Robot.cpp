@@ -5,8 +5,8 @@
 #include "commands/DriveWithJoy.h"
 #include "commands/ArmUp.h"
 #include "commands/ArmDown.h"
-#include "commands/ClawOpen.h"
-#include "commands/ClawClose.h"
+//#include "commands/ClawOpen.h"
+//#include "commands/ClawClose.h"
 
 Robot* Robot::instance = 0;
 Base*  Robot::base = 0;
@@ -22,9 +22,9 @@ Robot::Robot() {
 
   // Initialize any actions/commands needed
   JoystickButton* armUpJoystick = new JoystickButton(MainJoystick, Btn5U);
-  armUpJoystick->whileHeld(new ArmUpCommand());
+  armUpJoystick->whileHeld(new ArmUp());
   JoystickButton* armDownJoystick = new JoystickButton(MainJoystick, Btn5D);
-  armDownJoystick->whileHeld(new ArmDownCommand());
+  armDownJoystick->whileHeld(new ArmDown());
   /*
   JoystickButton* clawOpenJoystick = new JoystickButton(MainJoystick, Btn6U);
   clawOpenJoystick->whileHeld(new ClawOpenCommand());

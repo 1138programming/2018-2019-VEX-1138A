@@ -22,7 +22,7 @@
 const int leftBasePort = 1;
 const int rightBasePort = 10;
 
-const int liftPort = 5;
+const int armPort = 5;
 const int clawPort = 6;
 
 //Motor and encoder constants
