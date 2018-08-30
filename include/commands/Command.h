@@ -26,7 +26,7 @@ class Command {
 
     // Slightly more advanced features... use at your own risk, as
     // these may have unexpected consequences on the rest of the command system
-    virtual bool canBeInterruptedBy(Command* aCommand);
+    //virtual bool canBeInterruptedBy(Command* aCommand);
 
     void run(); // Run this command. May be called anywhere.
 
