@@ -20,6 +20,7 @@ void Score::initialize() {
 
 void Score::execute() {
   // Code that runs when this command is scheduled to run
+  //printf("Score command executed, inc is %d\n", inc);
   if (inc < 100) {
     Robot::claw->move(KMaxMotorSpeed);
   } else if (inc < 1000) {
@@ -32,6 +33,7 @@ void Score::execute() {
   }
 
   inc++;
+  delay(10);
 }
 
 bool Score::isFinished() {

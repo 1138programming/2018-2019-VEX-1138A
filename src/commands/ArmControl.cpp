@@ -18,6 +18,7 @@ void ArmControl::initialize() {
 
 void ArmControl::execute() {
   // Code that runs when this command is scheduled to run
+  printf("Arm default command is running\n");
   armUpButton = joystickGetDigital(1, 6, JOY_UP);
   armDownButton = joystickGetDigital(1, 6, JOY_DOWN);
 

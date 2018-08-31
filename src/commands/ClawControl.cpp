@@ -18,6 +18,7 @@ void ClawControl::initialize() {
 
 void ClawControl::execute() {
   // Code that runs when this command is scheduled to run
+  printf("Claw default command is running\n");
   clawUpButton = joystickGetDigital(1, 5, JOY_UP);
   clawDownButton = joystickGetDigital(1, 5, JOY_DOWN);
 
