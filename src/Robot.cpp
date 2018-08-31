@@ -3,8 +3,9 @@
 #include "events/JoystickButton.h"
 
 #include "commands/DriveWithJoy.h"
-#include "commands/ArmUp.h"
-#include "commands/ArmDown.h"
+#include "commands/ArmControl.h"
+#include "commands/ClawControl.h"
+#include "commands/Score.h"
 //#include "commands/ClawOpen.h"
 //#include "commands/ClawClose.h"
 
@@ -21,16 +22,19 @@ Robot::Robot() {
   claw = Claw::getInstance();
 
   // Initialize any actions/commands needed
-  JoystickButton* armUpJoystick = new JoystickButton(MainJoystick, Btn5U);
-  armUpJoystick->whileHeld(new ArmUp());
-  JoystickButton* armDownJoystick = new JoystickButton(MainJoystick, Btn5D);
-  armDownJoystick->whileHeld(new ArmDown());
+  //JoystickButton* armUpJoystick = new JoystickButton(MainJoystick, Btn5U);
+  //armUpJoystick->whileHeld(new ArmUp());
+  //JoystickButton* armDownJoystick = new JoystickButton(MainJoystick, Btn5D);
+  //armDownJoystick->whileHeld(new ArmDown());
   /*
   JoystickButton* clawOpenJoystick = new JoystickButton(MainJoystick, Btn6U);
   clawOpenJoystick->whileHeld(new ClawOpenCommand());
   JoystickButton* clawCloseJoystick = new JoystickButton(MainJoystick, Btn6D);
   clawCloseJoystick->whileHeld(new ClawCloseCommand());
   */
+
+  JoystickButton* score = new JoystickButton(MainJoystick, Btn8U);
+  score->whenPressed(new Score());
 }
 
 void Robot::robotInit() {

@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_ARMDOWN_H_
-#define _COMMANDS_ARMDOWN_H_
+#ifndef _COMMANDS_ARMCONTROL_H_
+#define _COMMANDS_ARMCONTROL_H_
 
 #include "commands/Command.h"
 
-class ArmDown: public Command {
+class ArmControl: public Command {
   public:
     bool canRun();
     void initialize();
@@ -11,9 +11,10 @@ class ArmDown: public Command {
     bool isFinished();
     void end();
     void interrupted();
-    ArmDown();
+    ArmControl();
   private:
-    int inc = 0;
+    bool armUpButton;
+    bool armDownButton;
 };
 
 #endif // _COMMANDS_DRIVEWITHJOY_H_

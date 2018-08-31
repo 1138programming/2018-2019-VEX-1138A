@@ -1,5 +1,6 @@
 #include "main.h"
 #include "Constants.h"
+#include "commands/ArmControl.h"
 
 Arm* Arm::instance = 0;
 
@@ -9,7 +10,7 @@ Arm::Arm() {
 }
 
 void Arm::initDefaultCommand() {
-  //setDefaultCommand(new DriveWithJoy());
+  setDefaultCommand(new ArmControl());
 }
 
 /**

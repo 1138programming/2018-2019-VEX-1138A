@@ -1,5 +1,5 @@
 #include "main.h"
-#include "commands/DriveWithJoy.h"
+#include "commands/ClawControl.h"
 
 Claw* Claw::instance = 0;
 
@@ -9,7 +9,7 @@ Claw::Claw() {
 }
 
 void Claw::initDefaultCommand() {
-  //setDefaultCommand(new DriveWithJoy());
+  setDefaultCommand(new ClawControl());
 }
 
 /**

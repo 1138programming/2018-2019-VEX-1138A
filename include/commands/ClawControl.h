@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_ARMUP_H_
-#define _COMMANDS_ARMUP_H_
+#ifndef _COMMANDS_CLAWCONTROL_H_
+#define _COMMANDS_CLAWCONTROL_H_
 
 #include "commands/Command.h"
 
-class ArmUp: public Command {
+class ClawControl: public Command {
   public:
     bool canRun();
     void initialize();
@@ -11,9 +11,10 @@ class ArmUp: public Command {
     bool isFinished();
     void end();
     void interrupted();
-    ArmUp();
+    ClawControl();
   private:
-    int inc = 0;
+    bool clawUpButton;
+    bool clawDownButton;
 };
 
 #endif // _COMMANDS_DRIVEWITHJOY_H_
