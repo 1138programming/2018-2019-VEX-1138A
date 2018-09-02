@@ -21,23 +21,24 @@ void Score::initialize() {
 void Score::execute() {
   // Code that runs when this command is scheduled to run
   //printf("Score command executed, inc is %d\n", inc);
-  if (inc < 100) {
+  if (inc < 30) {
     Robot::claw->move(KMaxMotorSpeed);
-  } else if (inc < 1000) {
+  } else if (inc < 180) {
     Robot::claw->move(0);
     Robot::arm->move(-KMaxMotorSpeed);
-  } else if (inc < 1500) {
+  } else if (inc < 210) {
     Robot::arm->move(0);
   } else {
     Robot::arm->move(KMaxMotorSpeed);
+    Robot::claw->move(-KMaxMotorSpeed);
   }
 
   inc++;
-  delay(10);
+  //delay(10);
 }
 
 bool Score::isFinished() {
-  return inc >= 2000;
+  return inc >= 360;
 }
 
 void Score::end() {
