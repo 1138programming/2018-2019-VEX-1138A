@@ -1,13 +1,15 @@
 #include "Robot.h"
 #include "events/EventScheduler.h"
 #include "events/JoystickButton.h"
+#include "events/JoystickChannel.h"
 
+#include "commands/StopBase.h"
+#include "commands/StopArm.h"
+#include "commands/StopClaw.h"
 #include "commands/DriveWithJoy.h"
 #include "commands/ArmControl.h"
 #include "commands/ClawControl.h"
-#include "commands/Score.h"
-//#include "commands/ClawOpen.h"
-//#include "commands/ClawClose.h"
+//#include "commands/Score.h"
 
 Robot* Robot::instance = 0;
 Base*  Robot::base = 0;
@@ -32,9 +34,22 @@ Robot::Robot() {
   JoystickButton* clawCloseJoystick = new JoystickButton(MainJoystick, Btn6D);
   clawCloseJoystick->whileHeld(new ClawCloseCommand());
   */
+  JoystickChannel* RightY = new JoystickChannel(MainJoystick, ChRightY);
+  JoystickChannel* LeftY = new JoystickChannel(MainJoystick, ChLeftY);
+  JoystickButton* ArmUp = new JoystickButton(MainJoystick, Btn6U);
+  JoystickButton* ArmDown = new JoystickButton(MainJoystick, Btn6D);
+  JoystickButton* ClawOpen = new JoystickButton(MainJoystick, Btn5U);
+  JoystickButton* ClawClose = new JoystickButton(MainJoystick, Btn5D);
 
-  JoystickButton* score = new JoystickButton(MainJoystick, Btn8U);
-  score->whenPressed(new Score());
+  DriveWithJoy* driveCommand = new DriveWithJoy();
+  RightY->whilePastThreshold(driveCommand);
+  LeftY->whilePastThreshold(driveCommand);
+
+  ArmUp->whileHeld(new ArmControl(true));
+  ArmDown->whileHeld(new ArmControl(false));
+
+  ClawOpen->whileHeld(new ClawControl(true));
+  ClawClose->whileHeld(new ClawControl(false));
 }
 
 void Robot::robotInit() {

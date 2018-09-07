@@ -1,38 +1,34 @@
-#include "commands/ArmControl.h"
+#include "commands/StopArm.h"
 #include "Robot.h"
 #include "Constants.h"
 
-ArmControl::ArmControl(bool Up) {
-  this->Up = Up;
+StopArm::StopArm() {
   requires(Robot::arm);
-  this->priority = 1;
+  this->priority = DefaultCommandPriority; // Lowest priority
 }
 
-bool ArmControl::canRun() {
+bool StopArm::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void ArmControl::initialize() {
+void StopArm::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
 }
 
-void ArmControl::execute() {
-  if (this->Up)
-    Robot::arm->move(-KMaxMotorSpeed);
-  else
-    Robot::arm->move(KMaxMotorSpeed);
+void StopArm::execute() {
+  Robot::arm->move(0);
 }
 
-bool ArmControl::isFinished() {
-  return true;
+bool StopArm::isFinished() {
+  return false;
 }
 
-void ArmControl::end() {
+void StopArm::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void ArmControl::interrupted() {
+void StopArm::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

@@ -13,8 +13,8 @@ class DriveWithJoy: public Command {
     void interrupted();
     DriveWithJoy();
   private:
-    int rightJoystick;
-    int leftJoystick;
+    int rightSideSpeed;
+    int leftSideSpeed;
 };
 
 #endif // _COMMANDS_DRIVEWITHJOY_H_

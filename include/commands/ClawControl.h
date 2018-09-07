@@ -11,10 +11,9 @@ class ClawControl: public Command {
     bool isFinished();
     void end();
     void interrupted();
-    ClawControl();
+    ClawControl(bool Open);
   private:
-    bool clawUpButton;
-    bool clawDownButton;
+    bool Open;
 };
 
-#endif // _COMMANDS_DRIVEWITHJOY_H_
+#endif // _COMMANDS_CLAWCONTROL_H_

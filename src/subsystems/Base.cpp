@@ -1,5 +1,5 @@
 #include "main.h"
-#include "commands/DriveWithJoy.h"
+#include "commands/StopBase.h"
 
 Base* Base::instance = 0;
 
@@ -12,7 +12,7 @@ Base::Base() {
 }
 
 void Base::initDefaultCommand() {
-  setDefaultCommand(new DriveWithJoy());
+  setDefaultCommand(new StopBase());
 }
 
 /**

@@ -2,9 +2,10 @@
 #include "Robot.h"
 #include "Constants.h"
 
-ClawControl::ClawControl() {
+ClawControl::ClawControl(bool Open) {
+  this->Open = Open;
   requires(Robot::claw);
-  this->priority = DefaultCommandPriority; // Lowest priority
+  this->priority = 1;
 }
 
 bool ClawControl::canRun() {
@@ -17,27 +18,18 @@ void ClawControl::initialize() {
 }
 
 void ClawControl::execute() {
-  // Code that runs when this command is scheduled to run
-  printf("Claw default command is running\n");
-  clawUpButton = joystickGetDigital(1, 5, JOY_UP);
-  clawDownButton = joystickGetDigital(1, 5, JOY_DOWN);
-
-  if (clawUpButton)
-    Robot::claw->move(-KMaxMotorSpeed);
-  else if (clawDownButton)
+  if (this->Open)
     Robot::claw->move(KMaxMotorSpeed);
   else
-    Robot::claw->move(0);
+    Robot::claw->move(-KMaxMotorSpeed);
 }
 
 bool ClawControl::isFinished() {
-  return false;
+  return true;
 }
 
 void ClawControl::end() {
   // Code that runs when isFinished() returns true.
-  //Robot::base->move(0, 0);
-  Robot::claw->move(0);
 }
 
 void ClawControl::interrupted() {

@@ -1,5 +1,5 @@
 #include "main.h"
-#include "commands/ClawControl.h"
+#include "commands/StopClaw.h"
 
 Claw* Claw::instance = 0;
 
@@ -9,7 +9,7 @@ Claw::Claw() {
 }
 
 void Claw::initDefaultCommand() {
-  setDefaultCommand(new ClawControl());
+  setDefaultCommand(new StopClaw());
 }
 
 /**

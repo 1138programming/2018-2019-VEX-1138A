@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_ARMCONTROL_H_
-#define _COMMANDS_ARMCONTROL_H_
+#ifndef _COMMANDS_STOPARM_H_
+#define _COMMANDS_STOPARM_H_
 
 #include "commands/Command.h"
 
-class ArmControl: public Command {
+class StopArm: public Command {
   public:
     bool canRun();
     void initialize();
@@ -11,9 +11,8 @@ class ArmControl: public Command {
     bool isFinished();
     void end();
     void interrupted();
-    ArmControl(bool Up);
+    StopArm();
   private:
-    bool Up;
 };
 
-#endif // _COMMANDS_ARMCONTROL_H_
+#endif // _COMMANDS_STOPARM_H_

@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_SCORE_H_
-#define _COMMANDS_SCORE_H_
+#ifndef _COMMANDS_STOPCLAW_H_
+#define _COMMANDS_STOPCLAW_H_
 
 #include "commands/Command.h"
 
-class Score: public Command {
+class StopClaw: public Command {
   public:
     bool canRun();
     void initialize();
@@ -11,9 +11,8 @@ class Score: public Command {
     bool isFinished();
     void end();
     void interrupted();
-    Score();
+    StopClaw();
   private:
-    int inc = 0;
 };
 
-#endif // _COMMANDS_DRIVEWITHJOY_H_
+#endif // _COMMANDS_STOPCLAW_H_
