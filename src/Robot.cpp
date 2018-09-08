@@ -9,7 +9,7 @@
 #include "commands/DriveWithJoy.h"
 #include "commands/ArmControl.h"
 #include "commands/ClawControl.h"
-//#include "commands/Score.h"
+#include "commands/ArmUpArmDown.h"
 
 Robot* Robot::instance = 0;
 Base*  Robot::base = 0;
@@ -40,6 +40,7 @@ Robot::Robot() {
   JoystickButton* ArmDown = new JoystickButton(MainJoystick, Btn6D);
   JoystickButton* ClawOpen = new JoystickButton(MainJoystick, Btn5U);
   JoystickButton* ClawClose = new JoystickButton(MainJoystick, Btn5D);
+  //JoystickButton* ArmUpArmDownButton = new JoystickButton(MainJoystick, Btn8U);
 
   DriveWithJoy* driveCommand = new DriveWithJoy();
   RightY->whilePastThreshold(driveCommand);
@@ -50,6 +51,8 @@ Robot::Robot() {
 
   ClawOpen->whileHeld(new ClawControl(true));
   ClawClose->whileHeld(new ClawControl(false));
+
+  //ArmUpArmDownButton->whileHeld(new ArmUpArmDown());
 }
 
 void Robot::robotInit() {

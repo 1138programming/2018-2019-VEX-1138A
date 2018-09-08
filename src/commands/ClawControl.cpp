@@ -5,7 +5,7 @@
 ClawControl::ClawControl(bool Open) {
   this->Open = Open;
   requires(Robot::claw);
-  this->priority = 1;
+  this->priority = 2;
 }
 
 bool ClawControl::canRun() {

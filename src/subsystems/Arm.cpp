@@ -7,6 +7,7 @@ Arm* Arm::instance = 0;
 Arm::Arm() {
   // Get arm motors
   armMotor = Motor::getMotor(armPort);
+  armMotor->reverse();
 }
 
 void Arm::initDefaultCommand() {

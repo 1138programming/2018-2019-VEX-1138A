@@ -4,7 +4,7 @@
 
 DriveWithJoy::DriveWithJoy() {
   requires(Robot::base);
-  this->priority = 1;
+  this->priority = 2;
 }
 
 bool DriveWithJoy::canRun() {

@@ -5,7 +5,7 @@
 ArmControl::ArmControl(bool Up) {
   this->Up = Up;
   requires(Robot::arm);
-  this->priority = 1;
+  this->priority = 2;
 }
 
 bool ArmControl::canRun() {
@@ -19,9 +19,9 @@ void ArmControl::initialize() {
 
 void ArmControl::execute() {
   if (this->Up)
-    Robot::arm->move(-KMaxMotorSpeed);
-  else
     Robot::arm->move(KMaxMotorSpeed);
+  else
+    Robot::arm->move(-KMaxMotorSpeed);
 }
 
 bool ArmControl::isFinished() {
