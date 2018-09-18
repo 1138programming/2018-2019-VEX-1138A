@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "RobotBase.h"
+#include "commands/ArmControl.h"
 
 class Robot : public RobotBase {
   private:
@@ -17,6 +18,10 @@ class Robot : public RobotBase {
     void teleopPeriodic();
     void disabledInit();
     void disabledPeriodic();
+    unsigned int startTime;
+    bool init2 = false;
+    bool startArm = false;
+    bool restartGroup = false;
   public:
     Robot();
     static Robot* getInstance();
@@ -25,6 +30,10 @@ class Robot : public RobotBase {
     static Base* base;
     static Arm*  arm;
     static Claw* claw;
+
+    // Pointers for some commands
+    //static ArmUpArmDown* armUpArmDown;
+    //static ArmControl* armControl;
 };
 
 

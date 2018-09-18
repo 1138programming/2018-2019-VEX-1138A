@@ -43,8 +43,8 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
-  imeCount = imeInitializeAll();
-  printf("%d IMEs Initialized.\n", imeCount);
+  //imeCount = imeInitializeAll();
+  //printf("%d IMEs Initialized.\n", imeCount);
   printf("It works without that...\n");
   setTeamName("1138B");
 

@@ -18,6 +18,7 @@ void ArmControl::initialize() {
 }
 
 void ArmControl::execute() {
+  //printf("Arm control running\n");
   if (this->Up)
     Robot::arm->move(KMaxMotorSpeed);
   else

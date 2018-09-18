@@ -18,6 +18,7 @@ void ClawControl::initialize() {
 }
 
 void ClawControl::execute() {
+  //printf("Claw control running\n");
   if (this->Open)
     Robot::claw->move(KMaxMotorSpeed);
   else

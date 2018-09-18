@@ -10,11 +10,14 @@
 #include "commands/ArmControl.h"
 #include "commands/ClawControl.h"
 #include "commands/ArmUpArmDown.h"
+#include "commands/MoveArmFor.h"
 
 Robot* Robot::instance = 0;
 Base*  Robot::base = 0;
 Arm*   Robot::arm = 0;
 Claw*  Robot::claw = 0;
+//ArmUpArmDown* armUpArmDown = new ArmUpArmDown();
+//ArmControl* armControl = new ArmControl(false);
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
@@ -40,7 +43,11 @@ Robot::Robot() {
   JoystickButton* ArmDown = new JoystickButton(MainJoystick, Btn6D);
   JoystickButton* ClawOpen = new JoystickButton(MainJoystick, Btn5U);
   JoystickButton* ClawClose = new JoystickButton(MainJoystick, Btn5D);
-  //JoystickButton* ArmUpArmDownButton = new JoystickButton(MainJoystick, Btn8U);
+  JoystickButton* ArmUpArmDownButton = new JoystickButton(MainJoystick, Btn8U);
+  //JoystickButton* ArmUpArmDownButton2 = new JoystickButton(MainJoystick, Btn8D);
+
+  //armUpArmDown = new ArmUpArmDown();
+  //armControl = new ArmControl(false);
 
   DriveWithJoy* driveCommand = new DriveWithJoy();
   RightY->whilePastThreshold(driveCommand);
@@ -52,11 +59,17 @@ Robot::Robot() {
   ClawOpen->whileHeld(new ClawControl(true));
   ClawClose->whileHeld(new ClawControl(false));
 
-  //ArmUpArmDownButton->whileHeld(new ArmUpArmDown());
+  ArmUpArmDown* armUpArmDown = new ArmUpArmDown();
+  ArmUpArmDownButton->whenPressed(armUpArmDown);
+  /*printf("Attempting to run printSomething\n");
+  delay(1000);
+  armUpArmDown->printSomething();
+  delay(1000);*/
+  //ArmUpArmDownButton2->whileHeld(armUpArmDown);
 }
 
 void Robot::robotInit() {
-  printf("Robot created.\n");
+  //printf("Robot created.\n");
 }
 
 void Robot::autonInit() {
@@ -71,10 +84,34 @@ void Robot::autonPeriodic() {
 
 void Robot::teleopInit() {
   //printf("Default teleopInit() function\n");
+  //ArmControl* armControl = new ArmControl(true);
+  //armControl->stop();
+
+  //startTime = millis();
 }
 
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
+    /*MoveArmFor* moveArmFor;
+    ArmUpArmDown*  armUpArmDown;
+    if (!init2) {
+      moveArmFor = new MoveArmFor(100, -127);
+      armUpArmDown = new ArmUpArmDown();
+      armUpArmDown->run();
+      init2 = true;
+    }
+
+    if (millis() > startTime + 100 && !startArm) {
+      //printf("Starting moveArmFor command \n");
+      //moveArmFor->run();
+      startArm = true;
+    }
+    if (millis() > startTime + 3000 && !restartGroup) {
+      //armUpArmDown->run();
+      restartGroup = true;
+    }*/
+
+    //printf("Teleop periodic\n");
     EventScheduler::getInstance()->update();
     Motor::periodicUpdate();
 }
