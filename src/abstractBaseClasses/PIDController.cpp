@@ -44,11 +44,25 @@ int PIDController::getSetpoint() {
 
 void PIDController::setSensorEncoder(Encoder encoder) {
   this->encoder = encoder;
+  this->IMEaddress = 0;
+  this->IMEset = false;
+}
+
+void PIDController::setSensorIME(unsigned char IMEaddress) {
+  this->IMEaddress = IMEaddress;
+  this->IMEset = true;
+  this->encoder = NULL;
 }
 
 int PIDController::getSensorValue() {
   if (encoder != NULL)
     return encoderGet(encoder);
+  else if (IMEset) {
+      int value;
+      imeGet(IMEaddress, &value);
+      return value;
+  }
+
   return 0;
 }
 
@@ -57,7 +71,8 @@ void PIDController::setThreshold(int threshold) {
 }
 
 void PIDController::loop() {
-  this->currSensorValue = this->getSensorValue();
+  //printf("PID is looping\n");
+  currSensorValue = getSensorValue();
   deltaTime = millis() - lastTime;
   lastTime = millis();
   error = setpoint - currSensorValue;
@@ -71,7 +86,12 @@ void PIDController::loop() {
   //   printf("Wrist output is %d\n", output);
   // }
   outputMotor->setSpeed(output);
+  printf("Error is %d, output is %d\n", error, output);
   previousError = error;
+}
+
+void PIDController::lock() {
+  setSetpoint(getSensorValue());
 }
 
 bool PIDController::atSetpoint() {

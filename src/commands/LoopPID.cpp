@@ -1,34 +1,33 @@
-#include "commands/StopClaw.h"
+#include "commands/LoopPID.h"
 #include "Robot.h"
 #include "Constants.h"
 
-StopClaw::StopClaw() {
-  requires(Robot::claw);
-  this->priority = DefaultCommandPriority; // Lowest priority
+LoopPID::LoopPID() {
+  this->priority = DefaultCommandPriority;
 }
 
-bool StopClaw::canRun() {
+bool LoopPID::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void StopClaw::initialize() {
+void LoopPID::initialize() {
   // Perform any initialization steps for this command here, not in the
-  // constructorr
+  // constructor
 }
 
-void StopClaw::execute() {
-  Robot::claw->move(0);
+void LoopPID::execute() {
+  PIDController::loopAll();
 }
 
-bool StopClaw::isFinished() {
+bool LoopPID::isFinished() {
   return false;
 }
 
-void StopClaw::end() {
+void LoopPID::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void StopClaw::interrupted() {
+void LoopPID::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

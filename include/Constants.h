@@ -31,6 +31,7 @@ const int KMaxJoystickValue = 127;
 const int encoderTicks = 360; // Encoder ticks in one revolution
 const float rotationsPerInch = 31.400156410256; // TODO check if this is correct
 
+const unsigned char armIME = 0;
 
 
 // Global things that we need

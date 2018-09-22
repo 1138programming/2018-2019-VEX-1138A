@@ -16,6 +16,8 @@ class PIDController {
     int output = 0;
     int setpoint = 0;
     Encoder encoder = NULL;
+    unsigned char IMEaddress = 0;
+    bool IMEset = false;
     int currSensorValue = 0;
     int threshold = 15; // Default value
     float deltaTime = 0;
@@ -30,10 +32,12 @@ class PIDController {
     void setSetpoint(int setpoint);
     int getSetpoint();
     void setSensorEncoder(Encoder encoder);
+    void setSensorIME(unsigned char IMEaddress);
     int getSensorValue();
     void setThreshold(int threshold);
     bool atSetpoint();
     void loop();
+    void lock();
     bool enabled = true;
     static void loopAll();
 };

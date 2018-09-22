@@ -15,6 +15,7 @@ bool ArmControl::canRun() {
 void ArmControl::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  Robot::arm->disablePID();
 }
 
 void ArmControl::execute() {
@@ -31,6 +32,7 @@ bool ArmControl::isFinished() {
 
 void ArmControl::end() {
   // Code that runs when isFinished() returns true.
+  //Robot::arm->lock();
 }
 
 void ArmControl::interrupted() {

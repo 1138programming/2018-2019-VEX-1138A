@@ -14,10 +14,13 @@ bool StopArm::canRun() {
 void StopArm::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  Robot::arm->lock();
 }
 
 void StopArm::execute() {
-  Robot::arm->move(0);
+  Robot::arm->enablePID();
+  PIDController::loopAll();
+  //Robot::arm->move(0);
 }
 
 bool StopArm::isFinished() {

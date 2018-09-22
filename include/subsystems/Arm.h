@@ -1,4 +1,5 @@
 // 6 motors
+#include "abstractBaseClasses/PIDController.h"
 
 #ifndef ARM_H
 #define ARM_H
@@ -13,11 +14,18 @@ class Arm : public Subsystem {
     Motor* armMotor;
 
     Encoder armRightEncoder;
+    PIDController* armController;
 
     Arm();
   public:
     void initDefaultCommand();
     void move(int speed);
+    void setSetpoint(int setpoint);
+    bool atSetpoint();
+    void loop();
+    void lock();
+    void disablePID();
+    void enablePID();
     static Arm* getInstance();
 };
 

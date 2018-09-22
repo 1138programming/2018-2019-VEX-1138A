@@ -11,6 +11,7 @@
 #include "commands/ClawControl.h"
 #include "commands/ArmUpArmDown.h"
 #include "commands/MoveArmFor.h"
+#include "commands/LoopPID.h"
 
 Robot* Robot::instance = 0;
 Base*  Robot::base = 0;
@@ -61,6 +62,7 @@ Robot::Robot() {
 
   ArmUpArmDown* armUpArmDown = new ArmUpArmDown();
   ArmUpArmDownButton->whenPressed(armUpArmDown);
+
   /*printf("Attempting to run printSomething\n");
   delay(1000);
   armUpArmDown->printSomething();
@@ -74,6 +76,9 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   //printf("Default autonInit() function\n");
+
+  LoopPID* loopPID = new LoopPID();
+  loopPID->run();
 }
 
 void Robot::autonPeriodic() {
@@ -84,10 +89,9 @@ void Robot::autonPeriodic() {
 
 void Robot::teleopInit() {
   //printf("Default teleopInit() function\n");
-  //ArmControl* armControl = new ArmControl(true);
-  //armControl->stop();
 
-  //startTime = millis();
+  LoopPID* loopPID = new LoopPID();
+  loopPID->run();
 }
 
 void Robot::teleopPeriodic() {
