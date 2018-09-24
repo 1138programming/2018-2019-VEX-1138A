@@ -12,6 +12,7 @@
 #include "commands/ArmUpArmDown.h"
 #include "commands/MoveArmFor.h"
 #include "commands/LoopPID.h"
+#include "commands/MoveArmTo.h"
 
 Robot* Robot::instance = 0;
 Base*  Robot::base = 0;
@@ -45,6 +46,10 @@ Robot::Robot() {
   JoystickButton* ClawOpen = new JoystickButton(MainJoystick, Btn5U);
   JoystickButton* ClawClose = new JoystickButton(MainJoystick, Btn5D);
   JoystickButton* ArmUpArmDownButton = new JoystickButton(MainJoystick, Btn8U);
+  JoystickButton* ArmToStart = new JoystickButton(MainJoystick, Btn7D);
+  JoystickButton* ArmToHorizontal = new JoystickButton(MainJoystick, Btn7R);
+  JoystickButton* ArmToTop = new JoystickButton(MainJoystick, Btn7U);
+  JoystickButton* ArmToBack = new JoystickButton(MainJoystick, Btn7L);
   //JoystickButton* ArmUpArmDownButton2 = new JoystickButton(MainJoystick, Btn8D);
 
   //armUpArmDown = new ArmUpArmDown();
@@ -62,6 +67,11 @@ Robot::Robot() {
 
   ArmUpArmDown* armUpArmDown = new ArmUpArmDown();
   ArmUpArmDownButton->whenPressed(armUpArmDown);
+
+  ArmToStart->whenPressed(new MoveArmTo(0));
+  ArmToHorizontal->whenPressed(new MoveArmTo(680));
+  ArmToTop->whenPressed(new MoveArmTo(1520));
+  ArmToBack->whenPressed(new MoveArmTo(2360));
 
   /*printf("Attempting to run printSomething\n");
   delay(1000);

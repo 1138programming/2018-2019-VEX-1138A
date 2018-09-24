@@ -9,7 +9,7 @@ Arm::Arm() {
   armMotor = Motor::getMotor(armPort);
   //armMotor->reverse();
 
-  armController = new PIDController(armMotor, 0.2, 0, 0.05);
+  armController = new PIDController(armMotor, 0.32, 0, 0.05);
   armController->setSensorIME(armIME);
 }
 

@@ -7,20 +7,23 @@ LoopPID::LoopPID() {
 }
 
 bool LoopPID::canRun() {
+  //printf("Can run?\n");
   return true; // This is the default value anyways, so this method can be removed
 }
 
 void LoopPID::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  //printf("Initializing loopPID");
 }
 
 void LoopPID::execute() {
+  //printf("Running loop PID\n");
   PIDController::loopAll();
 }
 
 bool LoopPID::isFinished() {
-  return false;
+  return true;
 }
 
 void LoopPID::end() {

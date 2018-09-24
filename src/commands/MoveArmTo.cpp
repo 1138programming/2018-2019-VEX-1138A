@@ -1,36 +1,38 @@
-#include "commands/StopArm.h"
+#include "commands/MoveArmTo.h"
 #include "Robot.h"
 #include "Constants.h"
 
-StopArm::StopArm() {
+MoveArmTo::MoveArmTo(int target = 0) {
   requires(Robot::arm);
-  this->priority = DefaultCommandPriority; // Lowest priority
+  this->priority = 1;
+  this->target = target;
 }
 
-bool StopArm::canRun() {
+bool MoveArmTo::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void StopArm::initialize() {
+void MoveArmTo::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  Robot::arm->lock();
   Robot::arm->enablePID();
+  Robot::arm->setSetpoint(target);
 }
 
-void StopArm::execute() {
-  //Robot::arm->move(0);
+void MoveArmTo::execute() {
+  //printf("Moving arm to: %d\n", target);
 }
 
-bool StopArm::isFinished() {
-  return false;
+bool MoveArmTo::isFinished() {
+  return Robot::arm->atSetpoint();
 }
 
-void StopArm::end() {
+void MoveArmTo::end() {
   // Code that runs when isFinished() returns true.
+  //Robot::arm->lock();
 }
 
-void StopArm::interrupted() {
+void MoveArmTo::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

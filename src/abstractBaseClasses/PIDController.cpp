@@ -78,15 +78,18 @@ void PIDController::loop() {
   error = setpoint - currSensorValue;
   integral += error * (deltaTime / 1000);
   derivative  = (error - previousError) / (deltaTime / 1000);
-  output = confineToRange((int)(kP * error + kI * integral + kD * derivative));
-  //printf("Current sensor value is %d\n", currSensorValue);
+  output = (int)(kP * error + kI * integral + kD * derivative);
+  int sign = output < 0 ? output == 0 ? -1 : 0 : 1;
+  //int sign = 0;
+  output = confineToRange(output + (sign * 12));
+  printf("Current sensor value is %d\n", currSensorValue);
   //printf("Error is %d, integral is %f, derivative is %f, and output is %d\n", error, integral, derivative, output);
   //printf("Error is %d and output is %d\n", error, output);
   // if (this->outputMotor->getChannel() == 10) {
   //   printf("Wrist output is %d\n", output);
   // }
   outputMotor->setSpeed(output);
-  printf("Error is %d, output is %d\n", error, output);
+  //printf("Error is %d, output is %d\n", error, output);
   previousError = error;
 }
 
